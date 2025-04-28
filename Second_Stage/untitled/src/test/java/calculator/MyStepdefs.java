@@ -13,6 +13,7 @@ public class MyStepdefs {
     private Calculator calculator;
     private int value1;
     private int value2;
+    private String op;
     private int result = 1;
 
     @Before
@@ -50,6 +51,21 @@ public class MyStepdefs {
     @When("I raise the first number to the power of the second number")
     public void iRaiseTheFirstNumberToThePowerOfTheSecondNumber() {
         result = calculator.power(value1, value2);
+        System.out.println(result);
+    }
+
+    @When("I perform the {string} operation")
+    public void iPerformTheOperation(String arg0) {
+        op = arg0;
+        if (op.equals("*")){
+            result = calculator.multiply(value1, value2);
+        }
+        else if(op.equals("/")){
+            result = calculator.division(value1, value2);
+        }
+        else {
+            result = calculator.power(value1, value2);
+        }
         System.out.println(result);
     }
 }
